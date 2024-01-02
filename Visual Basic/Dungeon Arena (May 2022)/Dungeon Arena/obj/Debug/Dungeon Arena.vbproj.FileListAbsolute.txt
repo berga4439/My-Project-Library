@@ -1,0 +1,30 @@
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\bin\Debug\Dungeon Arena.exe.config
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\bin\Debug\Dungeon Arena.exe
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\bin\Debug\Dungeon Arena.pdb
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\bin\Debug\Dungeon Arena.xml
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.vbproj.AssemblyReference.cache
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.Menu.resources
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.Resources.resources
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.vbproj.GenerateResource.cache
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.vbproj.CoreCompileInputs.cache
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.exe
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.xml
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.pdb
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.gamerWin.resources
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.helpWindow.resources
+C:\Users\alexrberg00\Documents\VSprojects\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.aboutWindow.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\bin\Debug\Dungeon Arena.exe.config
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\bin\Debug\Dungeon Arena.exe
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\bin\Debug\Dungeon Arena.pdb
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\bin\Debug\Dungeon Arena.xml
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.vbproj.AssemblyReference.cache
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.aboutWindow.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.helpWindow.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.Menu.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.gamerWin.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon_Arena.Resources.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.vbproj.GenerateResource.cache
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.vbproj.CoreCompileInputs.cache
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.exe
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.xml
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Debug\Dungeon Arena.pdb

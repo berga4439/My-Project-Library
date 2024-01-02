@@ -1,0 +1,15 @@
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\bin\Release\Dungeon Arena.exe.config
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\bin\Release\Dungeon Arena.exe
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\bin\Release\Dungeon Arena.pdb
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\bin\Release\Dungeon Arena.xml
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon Arena.vbproj.AssemblyReference.cache
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon_Arena.aboutWindow.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon_Arena.helpWindow.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon_Arena.Menu.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon_Arena.gamerWin.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon_Arena.Resources.resources
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon Arena.vbproj.GenerateResource.cache
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon Arena.vbproj.CoreCompileInputs.cache
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon Arena.exe
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon Arena.xml
+C:\Users\alexb\Downloads\Dungeon Arena-20220603T185126Z-001\Dungeon Arena\Dungeon Arena\obj\Release\Dungeon Arena.pdb
