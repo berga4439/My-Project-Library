@@ -1,0 +1,40 @@
+table, th, td{
+	border:1px solid #B0B0B0;
+	color:#fff;
+	border-collapse: collapse;
+	padding:5px;
+	background-color:#1E1E1E;
+}
+
+.center{
+	margin:auto;
+}
+
+h1{
+	text-align:center;
+	color:#fff;
+	background-color:#1E1E1E;
+}
+
+body {
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	height:100vh;
+}
+
+
+*{
+	background-color:#121212;
+	font-family:Arial;
+}
+
+div{
+	padding:10px;
+	margin:auto;
+	background-color:#1E1E1E;
+	width:20%;
+	height:90%;
+	align-items: center;
+	justify-content: center;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Submit Ticket</title>
+		<meta charset="UTF-8">
+		<link href="ticketstyle.css" type="text/css" rel="stylesheet">
+		<script src="newForm.js"></script>
+	</head>
+	
+	<body>
+		<form name="ticketForm" action="https://mscs-php.uwstout.edu/2023FA/cs/248/002/berga4439/Assignment%209/process.php" method="post">
+			<div class="info">
+			<fieldset>
+				<legend><strong>Ticket Form</strong></legend>
+				<table>
+					<tr>
+						<th>
+							<label class="heading" for="name" id="nameLbl">Name:</label>
+						</th>
+						<td>
+							<input type="text" name="name" id="name"><br>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="heading" for="device" id="deviceLbl">Device:</label>
+						</th>
+						<td>
+							<input type="text" name="device" id="device"><br>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="heading" for="notes" id="notesLbl">Notes:</label><br>
+						</th>
+						<td>
+							<textarea name="notes" id="notes" rows="4" cols="50"></textarea><br>
+						</td>
+					</tr>
+				</table>
+				<button type="button" onClick="submitForm()">Submit Ticket</button>
+			</fieldset>
+			</div>
+		</form>
+	</body>
+</html>
