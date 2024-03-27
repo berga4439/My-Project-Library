@@ -13,6 +13,7 @@ Python Projects:
     The Wikipedia game is a game where people race to get from a starting Wikipedia article to another article by only navigating the links on the page.
     This program attempts to navigate Wikipedia like a tree data strucure. A major problem is that this function grows exponentially with depth.
     In one of my tests with a max depth of 2, it navigated 262,798 pages.
+    
   -Discord Music Bot
     Uses Python and Discord API to play music in voice channels. This uses a few dependecies such as Youtube-dl, discord.py, PyNaCl, and FFMPEG. One of the major issues with this program is that youtube-dl is partly depricated.
     There is a current build of youtube-dl, but it has to be manually installed.
