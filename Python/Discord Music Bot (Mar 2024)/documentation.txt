@@ -1,0 +1,9 @@
+Commands: Prefix = "!"
+join - make the bot join without playing audio
+play [url] - play youtube video audio in voice channel
+dc - make bot leave
+skip - skip song
+pause - pause playing audio
+resume - resume audio
+queue - display current queue
+ping - bot responds with pong. useful to check if bot is alive
