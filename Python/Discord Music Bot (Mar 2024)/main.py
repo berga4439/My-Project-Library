@@ -2,11 +2,17 @@ import discord
 from discord.ext import commands, tasks
 import youtube_dl
 import requests
+from pytube import Playlist
 
 #tells Discord API what the bot intends to do
 intents = discord.Intents.all()
 intents.typing = False
 intents.presences = False
+
+#get token from token file
+f = open("token.txt", "r")
+token = f.read()
+f.close()
 
 #configs to download and play audio
 FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
@@ -26,6 +32,7 @@ def printQueue(queue):
         data = r.json()
         returnString += str(i + 1) + ". " + str(data['title']) + "\n"
     return returnString
+   
 
 #makes the bot join the user is in if the user is in a voice channel
 @client.command()
@@ -51,13 +58,44 @@ async def play(ctx, url):
         await ctx.voice_client.move_to(voice_channel)
     #adds media to queue if the bot is already playing
     #the queue uses guild id to create seperate queues for different guilds
-    if ctx.voice_client.is_playing():
-        if ctx.guild.id in request_queue:
-            request_queue[ctx.guild.id].append(url)
+    #handles playlists by adding every song from the list to the queue
+    if "playlist?" in url: #playlist
+        pl = Playlist(url)
+        urls = []
+        for link in pl:
+            urls.append(link)
+        if ctx.voice_client.is_playing():
+            if ctx.guild.id in request_queue:
+                request_queue[ctx.guild.id].extend(urls)
+            else:
+                request_queue[ctx.guild.id] = urls
+            await ctx.send("Added " + str(len(urls)) + " to queue.\nMedia in queue:\n" + printQueue(request_queue[ctx.guild.id]))
+            return
         else:
-            request_queue[ctx.guild.id] = [url]
-        await ctx.send("Media added to queue.\nMedia in queue:\n" + printQueue(request_queue[ctx.guild.id]))
-        return
+            url = urls.pop(0)
+            vc  = ctx.voice_client
+            with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
+                try:
+                    info = ydl.extract_info(url, download = False)
+                    song = info["url"]
+                    source = await discord.FFmpegOpusAudio.from_probe(song, **FFMPEG_OPTIONS)
+                    vc.play(source)
+                except:
+                    print("error")
+            if ctx.guild.id in request_queue:
+                request_queue[ctx.guild.id].extend(urls)
+            else:
+                request_queue[ctx.guild.id] = urls
+            await ctx.send("Added " + str(len(urls)) + " to queue.\nMedia in queue:\n" + printQueue(request_queue[ctx.guild.id]))
+            return 
+    else: #single link
+        if ctx.voice_client.is_playing():
+            if ctx.guild.id in request_queue:
+                request_queue[ctx.guild.id].append(url)
+            else:
+                request_queue[ctx.guild.id] = [url]
+            await ctx.send("Media added to queue.\nMedia in queue:\n" + printQueue(request_queue[ctx.guild.id]))
+            return
     #downloads content using youtube-dl, plays media using ffmpeg
     vc  = ctx.voice_client
     with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
@@ -122,4 +160,4 @@ async def on_ready():
     playNext.start(client)
     print('online')
 
-client.run('[TOKEN]')
+client.run(token)
