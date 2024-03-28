@@ -154,8 +154,19 @@ async def resume(ctx):
     await ctx.send("resuming")
 
 @client.command()
-async def skip(ctx):
-    ctx.voice_client.stop()
+async def skip(ctx, idx = 0):
+    if idx == 0:
+        ctx.voice_client.stop()
+    elif ctx.guild.id in request_queue:
+        if idx >= 1 and idx <= len(request_queue[ctx.guild.id]):
+            request_queue[ctx.guild.id].pop(idx - 1)
+        else:
+            await ctx.send("Invalid Position")
+            return
+    else:
+        await ctx.send("Queue not found")
+        return
+        
     await ctx.send("Song skipped")
     
 @client.command()

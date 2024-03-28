@@ -2,7 +2,7 @@ Commands: Prefix = "!"
 join - make the bot join without playing audio
 play [url] - play youtube video audio in voice channel
 dc - make bot leave
-skip - skip song
+skip [index] - skip song in queue, if no number provided it skips currently playing song
 clear - clears queue and currently playing audio
 pause - pause playing audio
 resume - resume audio
