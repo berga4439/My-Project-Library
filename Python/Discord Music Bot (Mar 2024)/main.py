@@ -31,6 +31,8 @@ def printQueue(queue):
         r = requests.get("https://noembed.com/embed?dataType=json&url=" + url)
         data = r.json()
         returnString += str(i + 1) + ". " + str(data['title']) + "\n"
+        if i >= 9:
+            break
     return returnString
    
 
