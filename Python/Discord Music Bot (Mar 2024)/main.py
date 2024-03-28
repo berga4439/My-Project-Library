@@ -72,7 +72,7 @@ async def play(ctx, url):
                 request_queue[ctx.guild.id].extend(urls)
             else:
                 request_queue[ctx.guild.id] = urls
-            await ctx.send("Added " + str(len(urls)) + " to queue.\nMedia in queue:\n" + printQueue(request_queue[ctx.guild.id]))
+            await ctx.send("Added " + str(len(urls)) + " to queue.\nMedia in queue (" + str(len(request_queue[ctx.guild.id])) +"):\n" + printQueue(request_queue[ctx.guild.id]))
             return
         else:
             url = urls.pop(0)
@@ -97,7 +97,7 @@ async def play(ctx, url):
                 request_queue[ctx.guild.id].append(url)
             else:
                 request_queue[ctx.guild.id] = [url]
-            await ctx.send("Media added to queue.\nMedia in queue:\n" + printQueue(request_queue[ctx.guild.id]))
+            await ctx.send("Media added to queue.\nMedia in queue (" + str(len(request_queue[ctx.guild.id])) + "):\n" + printQueue(request_queue[ctx.guild.id]))
             return
     #downloads content using youtube-dl, plays media using ffmpeg
     vc  = ctx.voice_client
@@ -115,7 +115,7 @@ async def play(ctx, url):
 async def playNext(bot):
     vc_list = bot.voice_clients
     for vc in vc_list:
-        if not vc.is_playing() and vc.guild.id in request_queue:
+        if not vc.is_playing() and vc.guild.id in request_queue and not vc.is_paused():
             if len(request_queue[vc.guild.id]) > 0:
                 url = request_queue[vc.guild.id].pop(0)
                 with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
@@ -127,12 +127,21 @@ async def playNext(bot):
                     except:
                         print("error")
 
+#clears queue and currently playing media
+@client.command()
+async def clear(ctx):
+    if ctx.guild.id in request_queue:
+        request_queue[ctx.guild.id] = []
+        ctx.voice_client.stop()
+        await ctx.send("Queue cleared!")
+    else:
+        await ctx.send("No queue found!")
 
 #prints items in queue
 @client.command()
 async def queue(ctx):
     if ctx.guild.id in request_queue:
-        await ctx.send("Media in queue:\n" + printQueue(request_queue[ctx.guild.id]))
+        await ctx.send("Media in queue(" + str(len(request_queue[ctx.guild.id])) + "):\n" + printQueue(request_queue[ctx.guild.id]))
 
 @client.command()
 async def pause(ctx):

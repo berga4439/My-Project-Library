@@ -3,6 +3,7 @@ join - make the bot join without playing audio
 play [url] - play youtube video audio in voice channel
 dc - make bot leave
 skip - skip song
+clear - clears queue and currently playing audio
 pause - pause playing audio
 resume - resume audio
 queue - display current queue
