@@ -32,6 +32,7 @@ def printQueue(queue):
         data = r.json()
         returnString += str(i + 1) + ". " + str(data['title']) + "\n"
         if i >= 9:
+            returnString += "And " + str(len(queue) - 10) + " more.\n"
             break
     return returnString
    
