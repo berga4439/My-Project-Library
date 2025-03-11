@@ -7,6 +7,7 @@ clear - clears queue and currently playing audio
 pause - pause playing audio
 resume - resume audio
 queue - display current queue
+now - display name of currently playing audio
 ping - bot responds with pong. useful to check if bot is alive
 
 *NOTE: When adding playlists make sure you send a link that looks like /playlist?list=XXX... not a playlist already being played which looks like watch?v=XXX&link?=XXX
