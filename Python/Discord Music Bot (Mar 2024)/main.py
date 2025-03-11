@@ -20,6 +20,10 @@ YDL_OPTIONS = {'format':"bestaudio"}
 
 #initiate an empty dictionary to store a queue for each server or "guild"
 request_queue = {}
+#holds the source to a preloaded song for each guild
+preloaded_song = {}
+#holds the name of the current playing media for each guild
+currently_playing = {}
 
 #create a bot/client with command prefix of '!'
 client = commands.Bot(command_prefix = '!', intents=intents)
@@ -65,6 +69,11 @@ def printQueue(queue):
             returnString += "And " + str(len(queue) - 10) + " more.\n"
             break
     return returnString
+
+def get_audio_name(url):
+    r = requests.get("https://noembed.com/embed?dataType=json&url=" + url)
+    data = r.json()
+    return str(data['title'])
    
 
 #makes the bot join the user is in if the user is in a voice channel
@@ -108,6 +117,7 @@ async def play(ctx, url):
             url = urls.pop(0)
             vc  = ctx.voice_client
             print("playing directly")
+            currently_playing[ctx.guild.id] = get_audio_name(url)
             await playAudio(vc, url)
             if ctx.guild.id in request_queue:
                 request_queue[ctx.guild.id].extend(urls)
@@ -126,9 +136,10 @@ async def play(ctx, url):
     #downloads content using youtube-dl, plays media using ffmpeg
     vc  = ctx.voice_client
     print("playing directly")
+    currently_playing[ctx.guild.id] = get_audio_name(url)
     await playAudio(vc, url)
 
-preloaded_song = {}
+
 #background task that plays the next song if there is one
 @tasks.loop(seconds=1.0)
 async def playNext(bot):
@@ -141,14 +152,17 @@ async def playNext(bot):
         if not vc.is_playing() and vc.guild.id in request_queue and not vc.is_paused():
             if vc.guild.id in preloaded_song:
                 if len(request_queue[vc.guild.id]) > 0:
-                    request_queue[vc.guild.id].pop(0)
+                    currently_playing[vc.guild.id] = get_audio_name(request_queue[vc.guild.id].pop(0))
                 source = preloaded_song.pop(vc.guild.id)
                 print("playing from preloaded source")
                 await playSource(vc, source)
             elif len(request_queue[vc.guild.id]) > 0:
                 url = request_queue[vc.guild.id].pop(0)
                 print("playing directly")
+                currently_playing[vc.guild.id] = get_audio_name(url)
                 await playAudio(vc, url)
+        elif not vc.is_playing() and not vc.is_paused() and vc.guild.id in currently_playing:
+            currently_playing.pop(vc.guild.id)
 
 #clears queue and currently playing media
 @client.command()
@@ -168,6 +182,13 @@ async def queue(ctx):
             await ctx.send("Media in queue (" + str(len(request_queue[ctx.guild.id])) + "):\n" + printQueue(request_queue[ctx.guild.id]))
         else:
             await ctx.send("No media in queue!")
+
+@client.command()
+async def now(ctx):
+    if ctx.guild.id in currently_playing:
+        await ctx.send("Currently playing:\n**" + currently_playing[ctx.guild.id] + "**")
+    else:
+        await ctx.send("Nothing is currently playing!")
 
 @client.command()
 async def pause(ctx):
