@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands, tasks
-import youtube_dl
+import yt_dlp
 import requests
 from pytube import Playlist
 
@@ -23,6 +23,36 @@ request_queue = {}
 
 #create a bot/client with command prefix of '!'
 client = commands.Bot(command_prefix = '!', intents=intents)
+
+async def getAudio(url):
+    global YDL_OPTIONS
+    with yt_dlp.YoutubeDL(YDL_OPTIONS) as ydl:
+        info = ydl.extract_info(url, download = False)
+        return info["url"]
+
+async def loadSource(song):
+    global FFMPEG_OPTIONS
+    return discord.FFmpegOpusAudio(song, **FFMPEG_OPTIONS)
+
+async def playSource(vc, source):
+    try:
+        vc.play(source)
+    except:
+        print("Song Playback Error")
+
+async def playAudio(vc, url):
+    try:
+        song = await getAudio(url)
+        source = await loadSource(song)
+        vc.play(source)
+    except:
+        print("Song Playback Error")
+
+
+async def preloadNext(url):
+    song = await getAudio(url)
+    source = await loadSource(song)
+    return source
 
 #function for getting the titles from the queue of urls
 def printQueue(queue):
@@ -77,14 +107,8 @@ async def play(ctx, url):
         else:
             url = urls.pop(0)
             vc  = ctx.voice_client
-            with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
-                try:
-                    info = ydl.extract_info(url, download = False)
-                    song = info["url"]
-                    source = await discord.FFmpegOpusAudio.from_probe(song, **FFMPEG_OPTIONS)
-                    vc.play(source)
-                except:
-                    print("error")
+            print("playing directly")
+            await playAudio(vc, url)
             if ctx.guild.id in request_queue:
                 request_queue[ctx.guild.id].extend(urls)
             else:
@@ -101,31 +125,30 @@ async def play(ctx, url):
             return
     #downloads content using youtube-dl, plays media using ffmpeg
     vc  = ctx.voice_client
-    with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
-        try:
-            info = ydl.extract_info(url, download = False)
-            song = info["url"]
-            source = await discord.FFmpegOpusAudio.from_probe(song, **FFMPEG_OPTIONS)
-            vc.play(source)
-        except:
-            print("error")
+    print("playing directly")
+    await playAudio(vc, url)
 
+preloaded_song = {}
 #background task that plays the next song if there is one
 @tasks.loop(seconds=1.0)
 async def playNext(bot):
     vc_list = bot.voice_clients
     for vc in vc_list:
-        if not vc.is_playing() and vc.guild.id in request_queue and not vc.is_paused():
+        if vc.is_playing() and vc.guild.id in request_queue and not vc.guild.id in preloaded_song:
             if len(request_queue[vc.guild.id]) > 0:
+                print("Preloading next song")
+                preloaded_song[vc.guild.id] = await preloadNext(request_queue[vc.guild.id][0])
+        if not vc.is_playing() and vc.guild.id in request_queue and not vc.is_paused():
+            if vc.guild.id in preloaded_song:
+                if len(request_queue[vc.guild.id]) > 0:
+                    request_queue[vc.guild.id].pop(0)
+                source = preloaded_song.pop(vc.guild.id)
+                print("playing from preloaded source")
+                await playSource(vc, source)
+            elif len(request_queue[vc.guild.id]) > 0:
                 url = request_queue[vc.guild.id].pop(0)
-                with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
-                    try:
-                        info = ydl.extract_info(url, download = False)
-                        song = info["url"]
-                        source = await discord.FFmpegOpusAudio.from_probe(song, **FFMPEG_OPTIONS)
-                        vc.play(source)
-                    except:
-                        print("error")
+                print("playing directly")
+                await playAudio(vc, url)
 
 #clears queue and currently playing media
 @client.command()
@@ -141,7 +164,10 @@ async def clear(ctx):
 @client.command()
 async def queue(ctx):
     if ctx.guild.id in request_queue:
-        await ctx.send("Media in queue(" + str(len(request_queue[ctx.guild.id])) + "):\n" + printQueue(request_queue[ctx.guild.id]))
+        if len(request_queue[ctx.guild.id]) > 0:
+            await ctx.send("Media in queue (" + str(len(request_queue[ctx.guild.id])) + "):\n" + printQueue(request_queue[ctx.guild.id]))
+        else:
+            await ctx.send("No media in queue!")
 
 @client.command()
 async def pause(ctx):
