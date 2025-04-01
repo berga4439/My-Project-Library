@@ -169,6 +169,10 @@ async def playNext(bot):
 async def clear(ctx):
     if ctx.guild.id in request_queue:
         request_queue[ctx.guild.id] = []
+        if ctx.guild.id in preloaded_song:
+            preloaded_song.pop(ctx.guild.id)
+        if ctx.guild.id in currently_playing:
+            currently_playing.pop(ctx.guild.id)
         ctx.voice_client.stop()
         await ctx.send("Queue cleared!")
     else:
